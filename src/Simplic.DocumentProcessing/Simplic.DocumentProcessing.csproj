@@ -50,7 +50,12 @@
     <Compile Include="OCR\OCRResult.cs" />
     <Compile Include="OCR\IOCRService.cs" />
     <Compile Include="OCR\OCROption.cs" />
+    <Compile Include="PdfLayer\IPdfLayerService.cs" />
+    <Compile Include="PdfLayer\PdfLayerMode.cs" />
+    <Compile Include="PdfSplitting\PageNumberRange.cs" />
+    <Compile Include="PdfSplitting\PdfSplitResult.cs" />
     <Compile Include="Pdf\IPdfContentExtractionService.cs" />
+    <Compile Include="PdfSplitting\IPdfSplitService.cs" />
     <Compile Include="Pdf\PdfContentExtractionResult.cs" />
     <Compile Include="Pdf\PdfContentExtractionOption.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
