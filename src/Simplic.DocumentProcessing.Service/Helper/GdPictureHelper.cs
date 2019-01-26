@@ -1,8 +1,8 @@
 ﻿using GdPicture14;
-using Simplic.Base;
 using Simplic.ComponentLicense;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,7 +51,7 @@ namespace Simplic.DocumentProcessing.Service
         {
             get
             {
-                return $"{GlobalSettings.StudioPath}\\OCR";
+                return $"{Directory.GetCurrentDirectory()}\\OCR";
             }
         }
     }

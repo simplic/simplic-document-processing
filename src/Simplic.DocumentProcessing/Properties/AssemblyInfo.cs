@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Simplic.DocumentProcessing.Service")]
+[assembly: AssemblyTitle("Simplic.DocumentProcessing")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Simplic.DocumentProcessing.Service")]
+[assembly: AssemblyProduct("Simplic.DocumentProcessing")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("ec94aee2-8852-433e-bdb3-26ae89d02522")]
+[assembly: Guid("6f7100b3-b168-4576-ad46-fd656851403b")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -1,5 +1,4 @@
-﻿using Simplic.Base;
-using Simplic.IO;
+﻿using Simplic.IO;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,6 +13,16 @@ namespace Simplic.DocumentProcessing.Service
     /// </summary>
     public class ADRService : IADRService
     {
+        private string temporaryDataDirectory = "";
+
+        /// <summary>
+        /// Initialize service
+        /// </summary>
+        public ADRService()
+        {
+            temporaryDataDirectory = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Simplic Studio\\";
+        }
+
         #region [CreateConfiguration]
         /// <summary>
         /// Create adr Configuration
@@ -26,7 +35,7 @@ namespace Simplic.DocumentProcessing.Service
 
             var tempPathId = Guid.NewGuid();
 
-            var path = $"{GlobalSettings.AppDataPath}\\ADR\\";
+            var path = $"{temporaryDataDirectory}\\ADR\\";
             var fullPath = $"{path}{tempPathId}.dat";
 
             DirectoryHelper.CreateDirectoryIfNotExists(path);
@@ -74,7 +83,7 @@ namespace Simplic.DocumentProcessing.Service
 
             using (var gdPictureImaging = GdPictureHelper.GetImagingInstance())
             {
-                var path = $"{GlobalSettings.AppDataPath}\\ADR\\";
+                var path = $"{temporaryDataDirectory}\\ADR\\";
                 var fullPath = $"{path}{tempPathId}.dat";
 
                 DirectoryHelper.CreateDirectoryIfNotExists(path);

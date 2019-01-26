@@ -7,8 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplic.DocumentProcessing.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ENV", "ENV", "{AE1AF7D0-29FF-46B2-9FE2-0727C66FA557}"
 	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
 		..\README.md = ..\README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplic.DocumentProcessing", "Simplic.DocumentProcessing\Simplic.DocumentProcessing.csproj", "{6F7100B3-B168-4576-AD46-FD656851403B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +23,10 @@ Global
 		{EC94AEE2-8852-433E-BDB3-26AE89D02522}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC94AEE2-8852-433E-BDB3-26AE89D02522}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC94AEE2-8852-433E-BDB3-26AE89D02522}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F7100B3-B168-4576-AD46-FD656851403B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F7100B3-B168-4576-AD46-FD656851403B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F7100B3-B168-4576-AD46-FD656851403B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F7100B3-B168-4576-AD46-FD656851403B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
