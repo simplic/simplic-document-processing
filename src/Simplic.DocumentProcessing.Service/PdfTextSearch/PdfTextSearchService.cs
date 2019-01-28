@@ -41,19 +41,22 @@ namespace Simplic.DocumentProcessing.Service
 
             for (int i = 1; i <= pdfInstance.GetPageCount(); i++)
             {
-                var text = pdfInstance.GetPageText();
-
-                foreach (var searchText in searchTexts)
+                if (pdfInstance.SelectPage(i) == GdPictureStatus.OK)
                 {
-                    var match = false;
+                    var text = pdfInstance.GetPageText();
 
-                    if (caseSensitive)
-                        match = text.Contains(searchText);
-                    else
-                        match = text.ToLower().Contains(searchText.ToLower());
+                    foreach (var searchText in searchTexts)
+                    {
+                        var match = false;
 
-                    if (match)
-                        result.Add(new PdfSearchResult { PageNumber = i, SearchText = searchText });
+                        if (caseSensitive)
+                            match = text.Contains(searchText);
+                        else
+                            match = text.ToLower().Contains(searchText.ToLower());
+
+                        if (match)
+                            result.Add(new PdfSearchResult { PageNumber = i, SearchText = searchText });
+                    }
                 }
             }
 
