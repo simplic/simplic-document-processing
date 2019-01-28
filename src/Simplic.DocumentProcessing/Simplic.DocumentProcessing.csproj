@@ -58,6 +58,7 @@
     <Compile Include="PdfTextSearch\PdfSearchResult.cs" />
     <Compile Include="Pdf\IPdfContentExtractionService.cs" />
     <Compile Include="PdfSplitting\IPdfSplitService.cs" />
+    <Compile Include="Pdf\IPdfService.cs" />
     <Compile Include="Pdf\PdfContentExtractionResult.cs" />
     <Compile Include="Pdf\PdfContentExtractionOption.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -64,6 +64,7 @@
     <Compile Include="PdfLayer\PdfLayerService.cs" />
     <Compile Include="PdfSplitting\PdfSplitService.cs" />
     <Compile Include="PdfTextSearch\PdfTextSearchService.cs" />
+    <Compile Include="Pdf\PdfService.cs" />
     <Compile Include="Pdf\PdfContentExtraction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
