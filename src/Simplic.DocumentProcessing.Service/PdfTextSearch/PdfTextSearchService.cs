@@ -12,16 +12,6 @@ namespace Simplic.DocumentProcessing.Service
     /// </summary>
     public class PdfTextSearchService : IPdfTextSearchService
     {
-        private GdPicturePDF pdfInstance;
-
-        /// <summary>
-        /// Initialize service
-        /// </summary>
-        public PdfTextSearchService()
-        {
-            pdfInstance = GdPictureHelper.GetPDFInstance();
-        }
-
         /// <summary>
         /// Search text within a pdf
         /// </summary>
@@ -36,39 +26,38 @@ namespace Simplic.DocumentProcessing.Service
             if (!searchTexts.Any())
                 return new List<PdfSearchResult>();
 
-            pdfInstance.LoadFromStream(new MemoryStream(pdf));
             var result = new List<PdfSearchResult>();
 
-            for (int i = 1; i <= pdfInstance.GetPageCount(); i++)
+            using (var stream = new MemoryStream(pdf))
             {
-                if (pdfInstance.SelectPage(i) == GdPictureStatus.OK)
+                using (var pdfInstance = GdPictureHelper.GetPDFInstance())
                 {
-                    var text = pdfInstance.GetPageText();
+                    pdfInstance.LoadFromStream(stream);
 
-                    foreach (var searchText in searchTexts)
+                    for (int i = 1; i <= pdfInstance.GetPageCount(); i++)
                     {
-                        var match = false;
+                        if (pdfInstance.SelectPage(i) == GdPictureStatus.OK)
+                        {
+                            var text = pdfInstance.GetPageText();
 
-                        if (caseSensitive)
-                            match = text.Contains(searchText);
-                        else
-                            match = text.ToLower().Contains(searchText.ToLower());
+                            foreach (var searchText in searchTexts)
+                            {
+                                var match = false;
 
-                        if (match)
-                            result.Add(new PdfSearchResult { PageNumber = i, SearchText = searchText });
+                                if (caseSensitive)
+                                    match = text.Contains(searchText);
+                                else
+                                    match = text.ToLower().Contains(searchText.ToLower());
+
+                                if (match)
+                                    result.Add(new PdfSearchResult { PageNumber = i, SearchText = searchText });
+                            }
+                        }
                     }
                 }
             }
 
             return result;
-        }
-
-        /// <summary>
-        /// Dispose service
-        /// </summary>
-        public void Dispose()
-        {
-            pdfInstance?.Dispose();
         }
     }
 }

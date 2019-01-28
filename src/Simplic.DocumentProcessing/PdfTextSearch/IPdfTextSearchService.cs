@@ -9,7 +9,7 @@ namespace Simplic.DocumentProcessing
     /// <summary>
     /// Text search service
     /// </summary>
-    public interface IPdfTextSearchService : IDisposable
+    public interface IPdfTextSearchService
     {
 
         /// <summary>
