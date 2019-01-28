@@ -61,6 +61,7 @@
     <Compile Include="Helper\GdPictureHelper.cs" />
     <Compile Include="Converter\TiffToPdfService.cs" />
     <Compile Include="OCR\OCRService.cs" />
+    <Compile Include="PdfTextSearch\PdfTextSearchService.cs" />
     <Compile Include="Pdf\PdfContentExtraction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

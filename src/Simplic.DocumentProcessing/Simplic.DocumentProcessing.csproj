@@ -54,6 +54,8 @@
     <Compile Include="PdfLayer\PdfLayerMode.cs" />
     <Compile Include="PdfSplitting\PageNumberRange.cs" />
     <Compile Include="PdfSplitting\PdfSplitResult.cs" />
+    <Compile Include="PdfTextSearch\IPdfTextSearchService.cs" />
+    <Compile Include="PdfTextSearch\PdfSearchResult.cs" />
     <Compile Include="Pdf\IPdfContentExtractionService.cs" />
     <Compile Include="PdfSplitting\IPdfSplitService.cs" />
     <Compile Include="Pdf\PdfContentExtractionResult.cs" />

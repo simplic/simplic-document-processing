@@ -13,6 +13,6 @@
         /// <summary>
         /// Add layer to all pages
         /// </summary>
-        EachPage = 2
+        AllPages = 2
     }
 }
