@@ -48,9 +48,9 @@ namespace Simplic.DocumentProcessing.Service
                     var match = false;
 
                     if (caseSensitive)
-                        match = text.Contains(searchText) == true;
+                        match = text.Contains(searchText);
                     else
-                        match = text?.ToLower().Contains(searchText?.ToLower()) == true;
+                        match = text.ToLower().Contains(searchText.ToLower());
 
                     if (match)
                         result.Add(new PdfSearchResult { PageNumber = i, SearchText = searchText });
