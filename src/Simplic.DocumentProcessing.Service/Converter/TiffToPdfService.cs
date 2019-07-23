@@ -35,7 +35,7 @@ namespace Simplic.DocumentProcessing.Service
                                 }
                             }
 
-                            pdfInstance.OcrPages("*", 0, language, GdPictureHelper.OCRDirectory, "", resolution, 0, true);
+                            pdfInstance.OcrPages("*", 1, language, GdPictureHelper.OCRDirectory, "", resolution, 0, true);
 
                             using (var stream = new MemoryStream())
                             {
