@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,6 +44,8 @@
     <Compile Include="ADR\ADRConfiguration.cs" />
     <Compile Include="ADR\ADRResult.cs" />
     <Compile Include="ADR\IADRService.cs" />
+    <Compile Include="Annotation\ITextAnnotationService.cs" />
+    <Compile Include="Annotation\TextAnnotation.cs" />
     <Compile Include="Converter\ITiffToPdfService.cs" />
     <Compile Include="OCR\OCRContext.cs" />
     <Compile Include="OCR\OCRLanguage.cs" />

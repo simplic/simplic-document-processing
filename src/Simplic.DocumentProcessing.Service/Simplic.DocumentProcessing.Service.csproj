@@ -49,6 +49,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ADR\ADRService.cs" />
+    <Compile Include="Annotation\TextAnnotationService.cs" />
     <Compile Include="Helper\GdPictureHelper.cs" />
     <Compile Include="Converter\TiffToPdfService.cs" />
     <Compile Include="OCR\OCRService.cs" />
