@@ -35,16 +35,20 @@ namespace Simplic.DocumentProcessing.Service
                     gdPictureImage.ReleaseGdPictureImage(singlePageImageId);
 
                 if (ranges == null || ranges.Count == 0)
-                    return new List<ImageSplitResult> { new ImageSplitResult { Image = image, PageCount = gdPictureImage.GetPageCount(imageId) } };
+                    return new List<ImageSplitResult> { new ImageSplitResult { Image = image, PageCount = gdPictureImage.TiffGetPageCount(imageId) } };
 
-                foreach (var range in ranges.Where(x => x.PageCount > 0 && x.StartPageNumber + (x.PageCount - 1) <= gdPictureImage.GetPageCount(imageId)))
+                foreach (var range in ranges.Where(x => x.PageCount > 0 && x.StartPageNumber + (x.PageCount - 1) <= gdPictureImage.TiffGetPageCount(imageId)))
                 {
                     var newImageId = gdPictureImage.TiffCreateMultiPageFromGdPictureImage(imageId);
+                    for (int i = 1; i <= gdPictureImage.TiffGetPageCount(newImageId); i++)
+                    {
+                        gdPictureImage.TiffDeletePage(newImageId, i);
+                    }
 
                     for (int i = 0; i < range.PageCount; i++)
                     {
                         gdPictureImage.SelectPage(imageId, range.StartPageNumber + i);
-                        gdPictureImage.TiffAppendPageFromGdPictureImage(imageId, newImageId);
+                        gdPictureImage.TiffAppendPageFromGdPictureImage(newImageId, imageId);
                     }
 
                     using (var targetStream = new MemoryStream())
