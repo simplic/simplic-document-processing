@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="ADR\ADRService.cs" />
     <Compile Include="Annotation\TextAnnotationService.cs" />
+    <Compile Include="Barcode\BarcodeRecognitionService.cs" />
     <Compile Include="Helper\GdPictureHelper.cs" />
     <Compile Include="Converter\TiffToPdfService.cs" />
     <Compile Include="OCR\OCRService.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Pdf\PdfService.cs" />
     <Compile Include="Pdf\PdfContentExtraction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ImageSplitting\ImageSplitService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Simplic.DocumentProcessing\Simplic.DocumentProcessing.csproj">
