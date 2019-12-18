@@ -63,6 +63,7 @@
     <Compile Include="Barcode\BarcodeRecognitionService.cs" />
     <Compile Include="Helper\GdPictureHelper.cs" />
     <Compile Include="Converter\TiffToPdfService.cs" />
+    <Compile Include="Merge\IPdfMergeService.cs" />
     <Compile Include="OCR\OCRService.cs" />
     <Compile Include="PdfLayer\PdfLayerService.cs" />
     <Compile Include="PdfSplitting\PdfSplitService.cs" />

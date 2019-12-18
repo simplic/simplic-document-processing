@@ -51,6 +51,8 @@
     <Compile Include="Barcode\IBarcodeRecognitionService.cs" />
     <Compile Include="Converter\ITiffToPdfService.cs" />
     <Compile Include="ImageSplitService\IImageSplitService.cs" />
+    <Compile Include="Merge\IPdfMergeService.cs" />
+    <Compile Include="Merge\MergeOption.cs" />
     <Compile Include="OCR\OCRContext.cs" />
     <Compile Include="OCR\OCRLanguage.cs" />
     <Compile Include="OCR\OCRMode.cs" />
