@@ -36,6 +36,7 @@ namespace Simplic.DocumentProcessing.Service
             {
                 var sourcePdf = GdPictureHelper.GetPDFInstance();
                 sourcePdf.LoadFromStream(new MemoryStream(pdf));
+                pdfObjects.Add(sourcePdf);
             }
 
             using (var targetPdf = GdPictureHelper.GetPDFInstance())
