@@ -44,7 +44,13 @@ namespace Simplic.DocumentProcessing.Service
         internal static GdPictureOCR GetOCRInstance()
         {
             RegisterLicense();
-            return new GdPictureOCR();            
+            return new GdPictureOCR();
+        }
+
+        internal static GdPictureDocumentConverter GetGdPictureDocumentConverterInstance()
+        {
+            RegisterLicense();
+            return new GdPictureDocumentConverter();
         }
 
         public static string OCRDirectory

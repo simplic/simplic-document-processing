@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.136
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplic.DocumentProcessing.Service", "Simplic.DocumentProcessing.Service\Simplic.DocumentProcessing.Service.csproj", "{EC94AEE2-8852-433E-BDB3-26AE89D02522}"
 EndProject
@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ENV", "ENV", "{AE1AF7D0-29F
 		..\.gitignore = ..\.gitignore
 		..\azure-pipelines.yml = ..\azure-pipelines.yml
 		..\README.md = ..\README.md
+		..\release-notes.xml = ..\release-notes.xml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplic.DocumentProcessing", "Simplic.DocumentProcessing\Simplic.DocumentProcessing.csproj", "{6F7100B3-B168-4576-AD46-FD656851403B}"
