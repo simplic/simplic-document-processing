@@ -1,5 +1,5 @@
 <ReleaseNotes>
-	<ChangeSet guid="6f8225f0-8722-47ed-ad11-32422e0e2f1a">
+	<ChangeSet guid="6f8225f0-8722-47ed-ad11-32422e0e2f1a" version="7.8.20.920" date="2020-09-24">
 		<Change type="feature">Add service to convert pdf files to tiff.</Change>
 		<Change type="bug">Fix barcode detection service, if the input file is of type pdf.</Change>
 	</ChangeSet>
