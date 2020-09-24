@@ -11,15 +11,15 @@ namespace Simplic.DocumentProcessing.Service
     /// </summary>
     public class BarcodeRecognitionService : IBarcodeRecognitionService
     {
-        private ITiffToPdfService tiffToPdfService;
+        private IPdfToTiffService pdfToTiffService;
 
         /// <summary>
         /// Initialize service
         /// </summary>
-        /// <param name="tiffToPdfService">Tiff to pdf service</param>
-        public BarcodeRecognitionService(ITiffToPdfService tiffToPdfService)
+        /// <param name="pdfToTiffService">Tiff to pdf service</param>
+        public BarcodeRecognitionService(IPdfToTiffService pdfToTiffService)
         {
-            this.tiffToPdfService = tiffToPdfService;
+            this.pdfToTiffService = pdfToTiffService;
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Simplic.DocumentProcessing.Service
             byte[] imgData = blob;
             if (fileExtension?.ToLower()?.Replace(".", "") == "pdf")
             {
-                imgData = tiffToPdfService.Convert(blob, false);
+                imgData = pdfToTiffService.Convert(blob);
             }
 
             var barcodeTypes = Barcode1DReaderType.Barcode1DReaderCode128 | Barcode1DReaderType.Barcode1DReaderEAN13 | Barcode1DReaderType.Barcode1DReaderEAN8;

@@ -1,2 +1,6 @@
 <ReleaseNotes>
+	<ChangeSet guid="6f8225f0-8722-47ed-ad11-32422e0e2f1a">
+		<Change type="feature">Add service to convert pdf files to tiff.</Change>
+		<Change type="bug">Fix barcode detection service, if the input file is of type pdf.</Change>
+	</ChangeSet>
 </ReleaseNotes>
