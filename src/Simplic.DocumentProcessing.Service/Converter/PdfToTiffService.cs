@@ -1,68 +1,38 @@
 ﻿using GdPicture14;
-using Simplic.DocumentProcessing;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Simplic.DocumentProcessing.Service
 {
+    /// <summary>
+    /// Provides methods to convert pdf files to tiff
+    /// </summary>
     public class PdfToTiffService : IPdfToTiffService
     {
+        /// <summary>
+        /// Convert pdf to tiff
+        /// </summary>
+        /// <param name="data">Pdf as byte array (blob)</param>
+        /// <returns>Tiff as byte array (blob)</returns>
         public byte[] Convert(byte[] data)
         {
-            byte[] pdf = null;
-
-            using (var pdfInstance = GdPictureHelper.GetPDFInstance())
+            //We assume that GdPicture has been correctly installed and unlocked.
+            using (var converter = GdPictureHelper.GetGdPictureDocumentConverterInstance())
             {
-                using (var gdPictureImaging = GdPictureHelper.GetImagingInstance())
+                using (var inStream = new MemoryStream(data))
                 {
-                    int imageId = gdPictureImaging.CreateGdPictureImageFromByteArray(data);
-                    if (gdPictureImaging.GetStat() == GdPictureStatus.OK)
+                    GdPictureStatus status = converter.LoadFromStream(inStream, GdPicture14.DocumentFormat.DocumentFormatPDF);
+                    if (status == GdPictureStatus.OK)
                     {
-                        float resolution = System.Math.Max(200, gdPictureImaging.GetVerticalResolution(imageId));
-                        var state = pdfInstance.NewPDF(embeddOCRText);
-
-                        if (state == GdPictureStatus.OK)
+                        using (var stream = new MemoryStream())
                         {
-                            for (int i = 1; i <= gdPictureImaging.GetPageCount(imageId); i++)
-                            {
-                                if (gdPictureImaging.SelectPage(imageId, i) == GdPictureStatus.OK)
-                                {
-                                    var addImageResult = pdfInstance.AddImageFromGdPictureImage(imageId, false, true);
-                                }
-                            }
-
-                            pdfInstance.OcrPages("*", 1, language, GdPictureHelper.OCRDirectory, "", resolution, 0, true);
-
-                            using (var stream = new MemoryStream())
-                            {
-                                pdfInstance.SaveToStream(stream);
-                                stream.Position = 0;
-                                pdf = stream.ToArray();
-                            }
-                        }
-                        else
-                        {
-                            throw new Exception($"Culd not convert document. State: {state}");
+                            status = converter.SaveAsTIFF(stream, TiffCompression.TiffCompressionAUTO);
+                            return stream.ToArray();
                         }
                     }
-                    else
-                    {
-                        throw new Exception("Could not create gdpicture imaging instance");
-                    }
-
-                    // Close pdf document
-                    pdfInstance?.CloseDocument();
-
-                    // Release gdpicture image
-                    gdPictureImaging.ReleaseGdPictureImage(imageId);
                 }
             }
 
-            return pdf;
+            return null;
         }
     }
 }
