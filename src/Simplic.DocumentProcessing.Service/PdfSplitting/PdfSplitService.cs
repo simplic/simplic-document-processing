@@ -47,7 +47,43 @@ namespace Simplic.DocumentProcessing
                     }
                 }
             }
+            return result;
+        }
 
+        /// <summary>
+        /// Split pdf by page number
+        /// </summary>
+        /// <param name="pdf">Pdf to split</param>
+        /// <param name="ranges">List of page number</param>
+        /// <returns>Splitted pdfs</returns>
+        public PdfSplitResult SplitByPageNumbers(byte[] pdf, IList<int> pageNumbers)
+        {
+            var result = new PdfSplitResult();
+
+            using (var stream = new MemoryStream(pdf))
+            {
+                using (var pdfInstance = GdPictureHelper.GetPDFInstance())
+                {
+                    pdfInstance.LoadFromStream(stream);
+
+                    if (pageNumbers == null || pageNumbers.Count == 0)
+                        return new PdfSplitResult { Pdf = pdf, PageCount = pdfInstance.GetPageCount() };
+
+                    using (var newPdf = GdPictureHelper.GetPDFInstance())
+                    {
+                        newPdf.NewPDF();
+                        foreach (var page in pageNumbers)
+                            newPdf.ClonePage(pdfInstance, page);
+
+                        using (var targetStream = new MemoryStream())
+                        {
+                            newPdf.SaveToStream(targetStream);
+                            targetStream.Position = 0;
+                            result = new PdfSplitResult { Pdf = targetStream.ToArray(), PageCount = pageNumbers.Count };
+                        }
+                    }
+                }
+            }
             return result;
         }
     }
