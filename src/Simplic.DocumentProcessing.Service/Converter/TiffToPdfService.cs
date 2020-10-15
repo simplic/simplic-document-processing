@@ -54,7 +54,7 @@ namespace Simplic.DocumentProcessing.Service
                         throw new Exception("Could not create gdpicture imaging instance");
                     }
 
-                    // Close pdf document
+                    // Close pdf document 
                     pdfInstance?.CloseDocument();
 
                     // Release gdpicture image
