@@ -12,7 +12,7 @@ namespace Simplic.DocumentProcessing
         public float Left { get; set; }
 
         /// <summary>
-        /// Gets or sets a list of pages to analyze. If no pages are inserted, all will be analyzed
+        /// Gets or sets a list of pages to analyze. If no pages are inserted, all will be analyzed 
         /// </summary>
         public IList<int> Pages { get; set; } = new List<int>();
         public float Top { get; set; }
