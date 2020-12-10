@@ -45,6 +45,7 @@
     <Compile Include="ADR\ADRService.cs" />
     <Compile Include="Annotation\TextAnnotationService.cs" />
     <Compile Include="Barcode\BarcodeRecognitionService.cs" />
+    <Compile Include="Barcode\QRCodeRecognitionService.cs" />
     <Compile Include="Converter\PdfToTiffService.cs" />
     <Compile Include="Helper\GdPictureHelper.cs" />
     <Compile Include="Converter\TiffToPdfService.cs" />

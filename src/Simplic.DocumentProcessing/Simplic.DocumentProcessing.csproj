@@ -50,6 +50,7 @@
     <Compile Include="Barcode\BarcodeRecognitionOption.cs" />
     <Compile Include="Barcode\BarcodeRecognitionResult.cs" />
     <Compile Include="Barcode\IBarcodeRecognitionService.cs" />
+    <Compile Include="Barcode\IQRCodeRecognitionService.cs" />
     <Compile Include="Converter\IPdfToTiffService.cs" />
     <Compile Include="Converter\ITiffToPdfService.cs" />
     <Compile Include="ImageSplitService\IImageSplitService.cs" />
