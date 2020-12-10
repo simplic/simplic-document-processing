@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Simplic.DocumentProcessing
 {
     /// <summary>
-    /// Barcode recognition settings/options
+    /// Barcode recognition settings/options 
     /// </summary>
     public class BarcodeRecognitionOption
     {

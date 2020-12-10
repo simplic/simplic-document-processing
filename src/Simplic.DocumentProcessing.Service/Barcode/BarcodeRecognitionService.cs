@@ -7,7 +7,7 @@ using System.Linq;
 namespace Simplic.DocumentProcessing.Service
 {
     /// <summary>
-    /// Barcode recognition service
+    /// Barcode recognition service 
     /// </summary>
     public class BarcodeRecognitionService : IBarcodeRecognitionService
     {
