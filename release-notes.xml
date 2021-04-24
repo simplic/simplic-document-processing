@@ -6,4 +6,7 @@
   <ChangeSet>
     <Change type="feature">Adds a service for reading qr-codes from pdf and tif documents (IQRCodeRecognitionService).</Change>
   </ChangeSet>
+  <ChangeSet>
+    <Change type="bug">Fixes an access violation exception, that caused application server crashes.</Change>
+  </ChangeSet>
 </ReleaseNotes>

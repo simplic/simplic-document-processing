@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,6 +41,7 @@ namespace Simplic.DocumentProcessing.Service
         /// Extract complete text. Uses the default options <see cref="DefaultOptions"/>
         /// </summary>
         /// <returns>Extraction result</returns>
+        [HandleProcessCorruptedStateExceptions]
         public PdfContentExtractionResult ExtractText()
         {
             return ExtractText(DefaultOptions);
@@ -50,55 +52,63 @@ namespace Simplic.DocumentProcessing.Service
         /// </summary>
         /// <param name="options">Option set</param>
         /// <returns>Extraction result</returns>
+        [HandleProcessCorruptedStateExceptions]
         public PdfContentExtractionResult ExtractText(PdfContentExtractionOption options)
         {
-            var result = new PdfContentExtractionResult();
-            var sb = new StringBuilder();
-
-            for (int i = 1; i <= PageCount; i++)
+            try
             {
-                try
+                var result = new PdfContentExtractionResult();
+                var sb = new StringBuilder();
+
+                for (int i = 1; i <= PageCount; i++)
                 {
-                    if (options.Pages.Count == 0 || options.Pages.Contains(i))
+                    try
                     {
-                        var region = new PdfContentExtractionRegionResult();
-                        region.Page = i;
-                        region.Height = options.Height;
-                        region.Width = options.Width;
-                        region.Top = options.Top;
-                        region.Left = options.Left;
-
-                        result.RegionResults.Add(region);
-
-                        var status = pdfInstance.SelectPage(i);
-                        if (status == GdPictureStatus.OK)
+                        if (options.Pages.Count == 0 || options.Pages.Contains(i))
                         {
-                            var text = "";
+                            var region = new PdfContentExtractionRegionResult();
+                            region.Page = i;
+                            region.Height = options.Height;
+                            region.Width = options.Width;
+                            region.Top = options.Top;
+                            region.Left = options.Left;
 
-                            if (options.Left == 0 && options.Top == 0 && options.Width == 0 && options.Height == 0)
-                                text = pdfInstance.GetPageText();
-                            else
-                                text = pdfInstance.GetPageTextArea(options.Left, options.Top, options.Width, options.Height);
+                            result.RegionResults.Add(region);
 
-                            status = pdfInstance.GetStat();
+                            var status = pdfInstance.SelectPage(i);
                             if (status == GdPictureStatus.OK)
                             {
-                                sb.AppendLine(text);
-                                region.Text = text;
+                                var text = "";
+
+                                if (options.Left == 0 && options.Top == 0 && options.Width == 0 && options.Height == 0)
+                                    text = pdfInstance.GetPageText();
+                                else
+                                    text = pdfInstance.GetPageTextArea(options.Left, options.Top, options.Width, options.Height);
+
+                                status = pdfInstance.GetStat();
+                                if (status == GdPictureStatus.OK)
+                                {
+                                    sb.AppendLine(text);
+                                    region.Text = text;
+                                }
                             }
                         }
                     }
+                    catch (Exception ex)
+                    {
+                        result.ErrorMessages.Add(ex.ToString());
+                        result.ErrorOccured = true;
+                    }
                 }
-                catch (Exception ex)
-                {
-                    result.ErrorMessages.Add(ex.ToString());
-                    result.ErrorOccured = true;
-                }
+
+                result.Text = sb.ToString();
+
+                return result;
             }
-
-            result.Text = sb.ToString();
-
-            return result;
+            catch (Exception ex)
+            {
+                throw new Exception("Error in content extraction", ex);
+            }
         }
 
         /// <summary>
