@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.ExceptionServices;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,6 +13,7 @@ namespace Simplic.DocumentProcessing.Service
 {
     public class TiffToPdfService : ITiffToPdfService
     {
+        [HandleProcessCorruptedStateExceptions]
         public byte[] Convert(byte[] data, bool embeddOCRText = true, string language = "deu")
         {
             byte[] pdf = null;
@@ -23,7 +26,12 @@ namespace Simplic.DocumentProcessing.Service
                     if (gdPictureImaging.GetStat() == GdPictureStatus.OK)
                     {
                         float resolution = System.Math.Max(200, gdPictureImaging.GetVerticalResolution(imageId));
-                        var state = pdfInstance.NewPDF(embeddOCRText);
+                        GdPictureStatus state = GdPictureStatus.OK;
+
+                        if (embeddOCRText)
+                            state = pdfInstance.NewPDF(PdfConformance.PDF_A_1a);
+                        else
+                            state = pdfInstance.NewPDF();
 
                         if (state == GdPictureStatus.OK)
                         {
@@ -35,7 +43,7 @@ namespace Simplic.DocumentProcessing.Service
                                 }
                             }
 
-                            pdfInstance.OcrPages("*", 1, language, GdPictureHelper.OCRDirectory, "", resolution, 0, true);
+                            // pdfInstance.OcrPages("*", 1, language, GdPictureHelper.OCRDirectory, "", resolution, 0, true);
 
                             using (var stream = new MemoryStream())
                             {
