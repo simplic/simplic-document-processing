@@ -35,7 +35,7 @@ namespace Simplic.DocumentProcessing.Service
                     gdPictureImage.ReleaseGdPictureImage(singlePageImageId);
 
                 if (ranges == null || ranges.Count == 0)
-                    return new List<ImageSplitResult> { new ImageSplitResult { Image = image, PageCount = gdPictureImage.TiffGetPageCount(imageId) } };
+                    return new List<ImageSplitResult> { };
 
                 foreach (var range in ranges.Where(x => x.PageCount > 0 && x.StartPageNumber + (x.PageCount - 1) <= gdPictureImage.TiffGetPageCount(imageId)))
                 {
@@ -55,7 +55,13 @@ namespace Simplic.DocumentProcessing.Service
                     {
                         gdPictureImage.SaveAsStream(newImageId, targetStream, GdPicture14.DocumentFormat.DocumentFormatTIFF, 4);
                         targetStream.Position = 0;
-                        result.Add(new ImageSplitResult { Image = targetStream.ToArray(), PageCount = range.PageCount });
+                        result.Add(new ImageSplitResult 
+                        {
+                            Image = targetStream.ToArray(), 
+                            PageCount = range.PageCount,
+                            Barcode = range.Barcode,
+                            BarcodeType = range.BarcodeType
+                        });
 
                         gdPictureImage.ReleaseGdPictureImage(newImageId);
                     }

@@ -9,4 +9,7 @@
   <ChangeSet>
     <Change type="bug">Fixes an access violation exception, that caused application server crashes.</Change>
   </ChangeSet>
+  <ChangeSet>
+    <Change type="enhancement">Pass barcodes through, when splitting PDFs and images.</Change>
+  </ChangeSet>
 </ReleaseNotes>
