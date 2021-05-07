@@ -27,7 +27,7 @@ namespace Simplic.DocumentProcessing
                     pdfInstance.LoadFromStream(stream);
 
                     if (ranges == null || ranges.Count == 0)
-                        return new List<PdfSplitResult> { new PdfSplitResult { Pdf = pdf, PageCount = pdfInstance.GetPageCount() } };
+                        return new List<PdfSplitResult> { };
 
                     foreach (var range in ranges.Where(x => x.PageCount > 0 && x.StartPageNumber + (x.PageCount - 1) <= pdfInstance.GetPageCount()))
                     {
@@ -41,7 +41,13 @@ namespace Simplic.DocumentProcessing
                             {
                                 newPdf.SaveToStream(targetStream);
                                 targetStream.Position = 0;
-                                result.Add(new PdfSplitResult { Pdf = targetStream.ToArray(), PageCount = range.PageCount });
+                                result.Add(new PdfSplitResult 
+                                {
+                                    Pdf = targetStream.ToArray(),
+                                    PageCount = range.PageCount,
+                                    Barcode = range.Barcode,
+                                    BarcodeType = range.BarcodeType
+                                });
                             }
                         }
                     }
