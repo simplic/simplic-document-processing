@@ -3,10 +3,10 @@
     <Change type="feature">Add service to convert pdf files to tiff.</Change>
     <Change type="bug">Fix barcode detection service, if the input file is of type pdf.</Change>
   </ChangeSet>
-  <ChangeSet>
+  <ChangeSet guid="01a548b5-843a-4e7d-9137-6f67f589d9b6">
     <Change type="feature">Adds a service for reading qr-codes from pdf and tif documents (IQRCodeRecognitionService).</Change>
   </ChangeSet>
-  <ChangeSet>
+  <ChangeSet guid="e75e337f-2664-40e2-ac0f-eb7b650b7fb7">
     <Change type="bug">Fixes an access violation exception, that caused application server crashes.</Change>
   </ChangeSet>
   <ChangeSet>
