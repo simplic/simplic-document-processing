@@ -56,6 +56,9 @@ namespace Simplic.DocumentProcessing.Service
                         {
                             throw new Exception($"Culd not convert document. State: {state}");
                         }
+
+                        // Release gdpicture image
+                        gdPictureImaging.ReleaseGdPictureImage(imageId);
                     }
                     else
                     {
@@ -64,9 +67,6 @@ namespace Simplic.DocumentProcessing.Service
 
                     // Close pdf document 
                     pdfInstance?.CloseDocument();
-
-                    // Release gdpicture image
-                    gdPictureImaging.ReleaseGdPictureImage(imageId);
                 }
             }
 

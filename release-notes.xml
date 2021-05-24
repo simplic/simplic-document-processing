@@ -12,4 +12,7 @@
   <ChangeSet>
     <Change type="enhancement">Pass barcodes through, when splitting PDFs and images.</Change>
   </ChangeSet>
+  <ChangeSet>
+    <Change type="bug">Fixes a memory leak in ADR library.</Change>
+  </ChangeSet>
 </ReleaseNotes>

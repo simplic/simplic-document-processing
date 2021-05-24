@@ -94,22 +94,29 @@ namespace Simplic.DocumentProcessing.Service
                 int imageId = gdPictureImaging.CreateGdPictureImageFromByteArray(blob);
                 if (imageId != 0)
                 {
-                    int closerTemplateID = gdPictureImaging.ADRGetCloserTemplateForGdPictureImage(imageId);
-                    if (closerTemplateID != 0)
+                    try
                     {
-                        var tag = gdPictureImaging.ADRGetTemplateTag(closerTemplateID);
-                        var accuracy = Math.Round(gdPictureImaging.ADRGetLastConfidence(), 2);
-
-                        if (accuracy > maxIdentityValue)
+                        int closerTemplateID = gdPictureImaging.ADRGetCloserTemplateForGdPictureImage(imageId);
+                        if (closerTemplateID != 0)
                         {
-                            result = new ADRResult()
-                            {
-                                Tag = tag,
-                                Accuracy = accuracy
-                            };
+                            var tag = gdPictureImaging.ADRGetTemplateTag(closerTemplateID);
+                            var accuracy = Math.Round(gdPictureImaging.ADRGetLastConfidence(), 2);
 
-                            maxIdentityValue = accuracy;
+                            if (accuracy > maxIdentityValue)
+                            {
+                                result = new ADRResult()
+                                {
+                                    Tag = tag,
+                                    Accuracy = accuracy
+                                };
+
+                                maxIdentityValue = accuracy;
+                            }
                         }
+                    }
+                    finally
+                    {
+                        gdPictureImaging.ReleaseGdPictureImage(imageId);
                     }
 
                     // Remove path

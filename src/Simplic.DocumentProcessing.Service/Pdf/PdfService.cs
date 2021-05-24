@@ -20,7 +20,11 @@ namespace Simplic.DocumentProcessing
                 using (var pdfInstance = GdPictureHelper.GetPDFInstance())
                 {
                     pdfInstance.LoadFromStream(stream);
-                    return pdfInstance.GetPageCount();
+                    var count = pdfInstance.GetPageCount();
+
+                    pdfInstance?.CloseDocument();
+
+                    return count;
                 }
             }
         }
