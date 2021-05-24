@@ -31,6 +31,8 @@ namespace Simplic.DocumentProcessing.Service
         /// <returns>True if loading was successfull</returns>
         public bool LoadPdf(byte[] pdf)
         {
+            Dispose();
+
             pdfInstance.LoadFromStream(new MemoryStream(pdf));
             PageCount = pdfInstance.GetPageCount();
 
@@ -66,12 +68,14 @@ namespace Simplic.DocumentProcessing.Service
                     {
                         if (options.Pages.Count == 0 || options.Pages.Contains(i))
                         {
-                            var region = new PdfContentExtractionRegionResult();
-                            region.Page = i;
-                            region.Height = options.Height;
-                            region.Width = options.Width;
-                            region.Top = options.Top;
-                            region.Left = options.Left;
+                            var region = new PdfContentExtractionRegionResult
+                            {
+                                Page = i,
+                                Height = options.Height,
+                                Width = options.Width,
+                                Top = options.Top,
+                                Left = options.Left
+                            };
 
                             result.RegionResults.Add(region);
 
@@ -116,6 +120,15 @@ namespace Simplic.DocumentProcessing.Service
         /// </summary>
         public void Dispose()
         {
+            try
+            {
+                pdfInstance?.CloseDocument();
+            }
+            catch
+            {
+                /* swallow */
+            }
+
             pdfInstance?.Dispose();
         }
 
