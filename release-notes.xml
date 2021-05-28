@@ -15,4 +15,7 @@
   <ChangeSet>
     <Change type="bug">Fixes a memory leak in ADR library.</Change>
   </ChangeSet>
+  <ChangeSet>
+    <Change type="bug">Fixes a memory leak in the GdPicture OCR implementation.</Change>
+  </ChangeSet>
 </ReleaseNotes>
