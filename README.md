@@ -9,3 +9,5 @@ Services:
 * OCR/DCE
 * Pdf
 * Format converter
+
+**Please ensure, that you have a valid GdPicture licence, to use this library.**
