@@ -18,4 +18,7 @@
   <ChangeSet guid="03c03b27-a640-42d3-a7a8-380041afd673">
     <Change type="bug">Fixes a memory leak in the GdPicture OCR implementation.</Change>
   </ChangeSet>
+  <ChangeSet>
+    <Change type="bug">Fixes a bug when detecting barcodes in PDF documents.</Change>
+  </ChangeSet>
 </ReleaseNotes>
