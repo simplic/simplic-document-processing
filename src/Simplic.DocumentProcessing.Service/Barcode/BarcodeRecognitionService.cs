@@ -67,6 +67,12 @@ namespace Simplic.DocumentProcessing.Service
 
                                 var imageID = gdPicturePdf.RenderPageToGdPictureImageEx(300, true);
 
+                                if (options.ConvertToBackAndWhite)
+                                {
+                                    gdPictureImage.FxBlackNWhite(imageID, BitonalReduction.Stucki);
+                                    gdPictureImage.ConvertTo1BppFast(imageID);
+                                }
+
                                 var status = gdPictureImage.Barcode1DReaderDoScan(imageID, Barcode1DReaderScanMode.BestQuality, barcodeTypes, false, 1);
                                 if (status == GdPictureStatus.OK)
                                 {
@@ -102,6 +108,12 @@ namespace Simplic.DocumentProcessing.Service
                         int imagetmp = imageID;
                         imageID = gdPictureImage.TiffCreateMultiPageFromGdPictureImage(imagetmp);
                         gdPictureImage.ReleaseGdPictureImage(imagetmp);
+                    }
+
+                    if (options.ConvertToBackAndWhite)
+                    {
+                        gdPictureImage.FxBlackNWhite(imageID, BitonalReduction.Stucki);
+                        gdPictureImage.ConvertTo1BppFast(imageID);
                     }
 
                     int pageCount = gdPictureImage.TiffGetPageCount(imageID);

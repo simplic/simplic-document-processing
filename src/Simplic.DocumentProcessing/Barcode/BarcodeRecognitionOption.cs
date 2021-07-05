@@ -12,5 +12,6 @@ namespace Simplic.DocumentProcessing
     public class BarcodeRecognitionOption
     {
         public IList<string> BarcodeTypes { get; set; } = new List<string>();
+        public bool ConvertToBackAndWhite { get; set; } = true;
     }
 }
