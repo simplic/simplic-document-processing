@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Simplic.DocumentProcessing
 {
@@ -11,6 +7,9 @@ namespace Simplic.DocumentProcessing
     /// </summary>
     public class BarcodeRecognitionOption
     {
+        /// <summary>
+        /// Gets or sets a list of barcode tyes. E.g. Code39, Code128
+        /// </summary>
         public IList<string> BarcodeTypes { get; set; } = new List<string>();
 
         /// <summary>
