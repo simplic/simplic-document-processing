@@ -21,4 +21,7 @@
   <ChangeSet guid="c866e170-9f15-403c-a57e-d5340fc57d3c">
     <Change type="bug">Fixes a bug when detecting barcodes in PDF documents.</Change>
   </ChangeSet>
+  <ChangeSet>
+    <Change type="enhancement">Adds the possibility to convert tiff and pdfs to black-and-white before reading barcodes.</Change>
+  </ChangeSet>
 </ReleaseNotes>
