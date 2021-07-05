@@ -15,6 +15,6 @@ namespace Simplic.DocumentProcessing
         /// <summary>
         /// Gets or sets whether to convert the document to black-and-white before reading barcodes.
         /// </summary>
-        public bool ConvertToBlackAndWhite { get; set; } = true;
+        public bool ConvertToBlackAndWhite { get; set; }
     }
 }
