@@ -67,7 +67,7 @@ namespace Simplic.DocumentProcessing.Service
 
                                 var imageID = gdPicturePdf.RenderPageToGdPictureImageEx(300, true);
 
-                                if (options.ConvertToBackAndWhite)
+                                if (options.ConvertToBlackAndWhite)
                                 {
                                     gdPictureImage.FxBlackNWhite(imageID, BitonalReduction.Stucki);
                                     gdPictureImage.ConvertTo1BppFast(imageID);
@@ -110,7 +110,7 @@ namespace Simplic.DocumentProcessing.Service
                         gdPictureImage.ReleaseGdPictureImage(imagetmp);
                     }
 
-                    if (options.ConvertToBackAndWhite)
+                    if (options.ConvertToBlackAndWhite)
                     {
                         gdPictureImage.FxBlackNWhite(imageID, BitonalReduction.Stucki);
                         gdPictureImage.ConvertTo1BppFast(imageID);
