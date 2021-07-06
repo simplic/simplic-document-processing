@@ -24,4 +24,7 @@
   <ChangeSet>
     <Change type="enhancement">Adds the possibility to convert tiff and pdfs to black-and-white before reading barcodes.</Change>
   </ChangeSet>
+  <ChangeSet>
+    <Change type="enhancement">Adds the possibility to set a specific DPI when using barcode-recognition for pdf documents.</Change>
+  </ChangeSet>
 </ReleaseNotes>
