@@ -34,7 +34,7 @@ namespace Simplic.DocumentProcessing.Service
         {
             var result = new List<BarcodeRecognitionResult>();
 
-            var barcodeTypes = Barcode1DReaderType.Barcode1DReaderCode128 | Barcode1DReaderType.Barcode1DReaderEAN13 | Barcode1DReaderType.Barcode1DReaderEAN8;
+            var barcodeTypes = Barcode1DReaderType.Barcode1DReaderCode128 | Barcode1DReaderType.Barcode1DReaderEAN13 | Barcode1DReaderType.Barcode1DReaderCode39;
 
             if (options.BarcodeTypes != null && options.BarcodeTypes.Any())
             {
@@ -65,7 +65,7 @@ namespace Simplic.DocumentProcessing.Service
                             {
                                 gdPicturePdf.SelectPage(pageNumber);
 
-                                var imageID = gdPicturePdf.RenderPageToGdPictureImageEx(300, true);
+                                var imageID = gdPicturePdf.RenderPageToGdPictureImageEx(options.PdfToTiffDPI, true);
 
                                 if (options.ConvertToBlackAndWhite)
                                 {
