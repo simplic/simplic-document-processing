@@ -26,6 +26,6 @@
   </ChangeSet>
   <ChangeSet>
     <Change type="enhancement">Adds the possibility to set a specific DPI when using barcode-recognition for pdf documents.</Change>
-    <Change type="enhancement">Adds Core39 as default barcode type.</Change>
+    <Change type="enhancement">Adds Code39 as default barcode type.</Change>
   </ChangeSet>
 </ReleaseNotes>
