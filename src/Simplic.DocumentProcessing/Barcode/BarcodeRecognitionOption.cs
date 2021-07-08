@@ -16,5 +16,10 @@ namespace Simplic.DocumentProcessing
         /// Gets or sets whether to convert the document to black-and-white before reading barcodes.
         /// </summary>
         public bool ConvertToBlackAndWhite { get; set; }
+
+        /// <summary>
+        /// Gets or sets the DPI that is used when converting a pdf to tiff before barcode-recognition
+        /// </summary>
+        public int PdfToTiffDPI { get; set; } = 300;
     }
 }
