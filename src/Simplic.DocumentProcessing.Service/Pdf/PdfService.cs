@@ -28,5 +28,36 @@ namespace Simplic.DocumentProcessing
                 }
             }
         }
+
+        /// <summary>
+        /// Adds an empty page to the given pdf.
+        /// </summary>
+        /// <param name="pdf">Pdf</param>
+        /// <param name="pageNumber">Index of the new page, starting with 1 which will insert an empty page as the first page</param>
+        /// <returns>The resulting Pdf-blob</returns>
+        public byte[] AddEmptyPage(byte[] pdf, int pageNumber)
+        {
+            using (var stream = new MemoryStream(pdf))
+            {
+                using (var pdfInstance = GdPictureHelper.GetPDFInstance())
+                {
+                    pdfInstance.LoadFromStream(stream);
+                    pdfInstance.SelectPage(1);
+                    float pageWidth = pdfInstance.GetPageWidth();
+                    float pageHeight = pdfInstance.GetPageHeight();
+
+                    pdfInstance.InsertPage(pageWidth, pageHeight, pageNumber);
+
+                    using (var targetStream = new MemoryStream())
+                    {
+                        pdfInstance.SaveToStream(targetStream);
+                        targetStream.Position = 0;
+
+                        pdfInstance?.CloseDocument();
+                        return targetStream.ToArray();
+                    }
+                }
+            }
+        }
     }
 }
