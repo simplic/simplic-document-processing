@@ -30,7 +30,7 @@ namespace Simplic.DocumentProcessing
         }
 
         /// <summary>
-        /// Adds an empty page.
+        /// Adds an empty page to the given pdf.
         /// </summary>
         /// <param name="pdf">Pdf</param>
         /// <param name="pageNumber">Index of the new page, starting with 1 which will insert an empty page as the first page</param>
@@ -53,7 +53,7 @@ namespace Simplic.DocumentProcessing
                         pdfInstance.SaveToStream(targetStream);
                         targetStream.Position = 0;
 
-                        pdfInstance?.CloseDocument(); // <- Check whether this is required / causes any problems
+                        pdfInstance?.CloseDocument();
                         return targetStream.ToArray();
                     }
                 }
