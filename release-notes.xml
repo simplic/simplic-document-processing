@@ -24,4 +24,11 @@
   <ChangeSet >
     <Change type="enhancement">Added a new method "AddEmptyPage()" to the PDF-service</Change>
   </ChangeSet>
+  <ChangeSet guid="b5c3d759-a81a-4272-a4b9-cc9db2d6e9ed">
+    <Change type="enhancement">Adds the possibility to convert tiff and pdfs to black-and-white before reading barcodes.</Change>
+  </ChangeSet>
+  <ChangeSet>
+    <Change type="enhancement">Adds the possibility to set a specific DPI when using barcode-recognition for pdf documents.</Change>
+    <Change type="enhancement">Adds Code39 as default barcode type.</Change>
+  </ChangeSet>
 </ReleaseNotes>
