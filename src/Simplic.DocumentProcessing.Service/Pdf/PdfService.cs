@@ -37,7 +37,6 @@ namespace Simplic.DocumentProcessing
         /// <returns>The resulting Pdf-blob</returns>
         public byte[] AddEmptyPage(byte[] pdf, int pageNumber)
         {
-            var pdfToTiffService = CommonServiceLocator.ServiceLocator.Current.GetInstance<PdfToTiffService>();
             using (var stream = new MemoryStream(pdf))
             {
                 using (var pdfInstance = GdPictureHelper.GetPDFInstance())
@@ -48,9 +47,15 @@ namespace Simplic.DocumentProcessing
                     float pageHeight = pdfInstance.GetPageHeight();
 
                     pdfInstance.InsertPage(pageWidth, pageHeight, pageNumber);
-                    byte[] blob = pdfToTiffService.Convert(pdf);
-                    pdfInstance?.CloseDocument();
-                    return blob;
+
+                    using (var targetStream = new MemoryStream())
+                    {
+                        pdfInstance.SaveToStream(targetStream);
+                        targetStream.Position = 0;
+
+                        pdfInstance?.CloseDocument(); // <- Check whether this is required / causes any problems
+                        return targetStream.ToArray();
+                    }
                 }
             }
         }
