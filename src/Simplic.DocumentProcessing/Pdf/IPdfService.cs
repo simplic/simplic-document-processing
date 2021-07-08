@@ -11,6 +11,7 @@
         /// <param name="pdf">Pdf</param>
         /// <returns>Page count</returns>
         int GetPageCount(byte[] pdf);
+
         /// <summary>
         /// Adds an empty page.
         /// </summary>
