@@ -20,7 +20,6 @@
         /// <returns>The resulting Pdf-blob</returns>
         byte[] AddEmptyPage(byte[] pdf, int pageNumber);
 
-
         /// <summary>
         /// Adds a text annotation
         /// </summary>
