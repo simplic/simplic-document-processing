@@ -31,7 +31,7 @@
     <Change type="enhancement">Adds the possibility to set a specific DPI when using barcode-recognition for pdf documents.</Change>
     <Change type="enhancement">Adds Code39 as default barcode type.</Change>
   </ChangeSet>
-  <ChangeSet>
+  <ChangeSet guid="284554ef-a299-4534-b1c6-83e9c283be76">
     <Change type="enhancement">Added a new method to the PDF-service which can add a text annotation.</Change>
   </ChangeSet>
 </ReleaseNotes>
