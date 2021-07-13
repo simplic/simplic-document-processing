@@ -1,5 +1,6 @@
 ﻿using GdPicture14;
 using Simplic.DocumentProcessing.Service;
+using System.Drawing;
 using System.IO;
 
 namespace Simplic.DocumentProcessing
@@ -62,21 +63,14 @@ namespace Simplic.DocumentProcessing
         }
 
         /// <summary>
-        /// Adds a text annotation, background behind the text will always be white opaque
+        /// Adds a text annotation
         /// </summary>
         /// <param name="pdf">Pdf</param>
-        /// <param name="content">The actual string which will be inserted into the annotaiton</param>
         /// <param name="pageNumber">Page number on which the annotation will be placed</param>
-        /// <param name="textColorR">Red value of the text</param>
-        /// <param name="textColorG">Gree value of the text</param>
-        /// <param name="textColorB">Blue value of the text</param>
-        /// <param name="top">Margin from the top of the document in millimeters</param>
-        /// <param name="left">margin from the left of the document in millimeters</param>
-        /// <returns></returns>
-        public byte[] AddTextAnnotation(byte[] pdf, string content, int pageNumber, byte textColorR, byte textColorG, byte textColorB, float top, float left)
+        /// <param name="annotation">The annotation which will be added</param>
+        /// <returns>The modified Pdf-blob</returns>
+        public byte[] AddTextAnnotation(byte[] pdf, int pageNumber, PdfAnnotation annotation)
         {
-            int annotationWidth = 50;
-            int annotationheight = 50;
             using (var stream = new MemoryStream(pdf))
             {
                 using (var pdfInstance = GdPictureHelper.GetPDFInstance())
@@ -85,7 +79,7 @@ namespace Simplic.DocumentProcessing
                     pdfInstance.SelectPage(pageNumber);
                     pdfInstance.SetOrigin(PdfOrigin.PdfOriginTopLeft);
                     pdfInstance.SetMeasurementUnit(PdfMeasurementUnit.PdfMeasurementUnitMillimeter);
-                    pdfInstance.AddFreeTextAnnotation(left, top + annotationheight, annotationWidth, annotationheight, false, "", "", content, "Arial", 12, textColorR, textColorB, textColorG, 255, 255, 255, 1.0f);
+                    pdfInstance.AddFreeTextAnnotation(annotation.Left, annotation.Top + annotation.Height, annotation.Width, annotation.Height, annotation.HasBorder, "", "", annotation.Content, annotation.FontName, annotation.FontSize, annotation.FontColor.R, annotation.FontColor.G, annotation.FontColor.B, annotation.BackgroundColor.R, annotation.BackgroundColor.G, annotation.BackgroundColor.B, annotation.Opacity);
 
                     using (var targetStream = new MemoryStream())
                     {

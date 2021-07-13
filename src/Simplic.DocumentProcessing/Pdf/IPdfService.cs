@@ -20,18 +20,14 @@
         /// <returns>The resulting Pdf-blob</returns>
         byte[] AddEmptyPage(byte[] pdf, int pageNumber);
 
+
         /// <summary>
-        /// Adds a text annotation, background behind the text will always be white opaque
+        /// Adds a text annotation
         /// </summary>
         /// <param name="pdf">Pdf</param>
-        /// <param name="content">The actual string which will be inserted into the annotaiton</param>
         /// <param name="pageNumber">Page number on which the annotation will be placed</param>
-        /// <param name="textColorR">Red value of the text</param>
-        /// <param name="textColorG">Gree value of the text</param>
-        /// <param name="textColorB">Blue value of the text</param>
-        /// <param name="top">Margin from the top of the document in millimeters</param>
-        /// <param name="left">margin from the left of the document in millimeters</param>
-        /// <returns></returns>
-        byte[] AddTextAnnotation(byte[] pdf, string content, int pageNumber, byte textColorR, byte textColorG, byte textColorB, float top, float left);
+        /// <param name="annotation">The annotation which will be added</param>
+        /// <returns>The modified Pdf-blob</returns>
+        byte[] AddTextAnnotation(byte[] pdf, int pageNumber, PdfAnnotation annotation);
     }
 }
