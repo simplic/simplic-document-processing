@@ -43,7 +43,7 @@ namespace Simplic.DocumentProcessing
         /// <summary>
         /// The backgroundcolor which will fill the background of this annotation
         /// </summary>
-        public Color BackgroundColor { get; set; } = Color.White,
+        public Color BackgroundColor { get; set; } = Color.White;
         /// <summary>
         /// Opacity, reaching from 0 (transparent) to 1 (opaque)
         /// </summary>
