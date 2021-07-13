@@ -32,6 +32,6 @@
     <Change type="enhancement">Adds Code39 as default barcode type.</Change>
   </ChangeSet>
   <ChangeSet>
-    <Change type="enhancement">Added a new Method to the PDF-service which can add a text annotation.</Change>
+    <Change type="enhancement">Added a new method to the PDF-service which can add a text annotation.</Change>
   </ChangeSet>
 </ReleaseNotes>
