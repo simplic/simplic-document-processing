@@ -21,13 +21,13 @@
   <ChangeSet guid="c866e170-9f15-403c-a57e-d5340fc57d3c">
     <Change type="bug">Fixes a bug when detecting barcodes in PDF documents.</Change>
   </ChangeSet>
-  <ChangeSet>
+  <ChangeSet guid="529c87cd-cb46-48f9-9b32-ef63ee00489b">
     <Change type="enhancement">Added a new method "AddEmptyPage()" to the PDF-service</Change>
   </ChangeSet>
   <ChangeSet guid="b5c3d759-a81a-4272-a4b9-cc9db2d6e9ed">
     <Change type="enhancement">Adds the possibility to convert tiff and pdfs to black-and-white before reading barcodes.</Change>
   </ChangeSet>
-  <ChangeSet>
+  <ChangeSet guid="0a442813-bd72-488d-a303-1ea8bb6bd770">
     <Change type="enhancement">Adds the possibility to set a specific DPI when using barcode-recognition for pdf documents.</Change>
     <Change type="enhancement">Adds Code39 as default barcode type.</Change>
   </ChangeSet>
