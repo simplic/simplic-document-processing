@@ -1,4 +1,5 @@
-﻿using Simplic.DocumentProcessing.Service;
+﻿using GdPicture14;
+using Simplic.DocumentProcessing.Service;
 using System.IO;
 
 namespace Simplic.DocumentProcessing
@@ -47,6 +48,44 @@ namespace Simplic.DocumentProcessing
                     float pageHeight = pdfInstance.GetPageHeight();
 
                     pdfInstance.InsertPage(pageWidth, pageHeight, pageNumber);
+
+                    using (var targetStream = new MemoryStream())
+                    {
+                        pdfInstance.SaveToStream(targetStream);
+                        targetStream.Position = 0;
+
+                        pdfInstance?.CloseDocument();
+                        return targetStream.ToArray();
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Adds a text annotation, background behind the text will always be white opaque
+        /// </summary>
+        /// <param name="pdf">Pdf</param>
+        /// <param name="content">The actual string which will be inserted into the annotaiton</param>
+        /// <param name="pageNumber">Page number on which the annotation will be placed</param>
+        /// <param name="textColorR">Red value of the text</param>
+        /// <param name="textColorG">Gree value of the text</param>
+        /// <param name="textColorB">Blue value of the text</param>
+        /// <param name="top">Margin from the top of the document in millimeters</param>
+        /// <param name="left">margin from the left of the document in millimeters</param>
+        /// <returns></returns>
+        public byte[] AddTextAnnotation(byte[] pdf, string content, int pageNumber, byte textColorR, byte textColorG, byte textColorB, float top, float left)
+        {
+            int annotationWidth = 50;
+            int annotationheight = 50;
+            using (var stream = new MemoryStream(pdf))
+            {
+                using (var pdfInstance = GdPictureHelper.GetPDFInstance())
+                {
+                    pdfInstance.LoadFromStream(stream);
+                    pdfInstance.SelectPage(pageNumber);
+                    pdfInstance.SetOrigin(PdfOrigin.PdfOriginTopLeft);
+                    pdfInstance.SetMeasurementUnit(PdfMeasurementUnit.PdfMeasurementUnitMillimeter);
+                    pdfInstance.AddFreeTextAnnotation(left, top + annotationheight, annotationWidth, annotationheight, false, "", "", content, "Arial", 12, textColorR, textColorB, textColorG, 255, 255, 255, 1.0f);
 
                     using (var targetStream = new MemoryStream())
                     {
