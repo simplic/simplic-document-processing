@@ -92,5 +92,53 @@ namespace Simplic.DocumentProcessing
                 }
             }
         }
+
+        /// <summary>
+        /// Rotates a Pdf
+        /// </summary>
+        /// <param name="pdf">The pdf</param>
+        /// <param name="pageNumber">Index of the page to rotate</param>
+        /// <param name="degree">Clockwise rotation</param>
+        /// <returns>The rotated Pdf</returns>
+        public byte[] RotatePdf(byte[] pdf, int pageNumber, double degree)
+        {
+            using (var stream = new MemoryStream(pdf))
+            {
+                using (var pdfInstance = GdPictureHelper.GetPDFInstance())
+                {
+                    pdfInstance.LoadFromStream(stream);
+                    pdfInstance.SelectPage(pageNumber);
+                    pdfInstance.RotatePageEx((float)degree);
+
+                    using (var targetStream = new MemoryStream())
+                    {
+                        pdfInstance.SaveToStream(targetStream);
+                        targetStream.Position = 0;
+
+                        pdfInstance?.CloseDocument();
+                        return targetStream.ToArray();
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Estimates a pages text rotation
+        /// </summary>
+        /// <param name="pdf">The pdf</param>
+        /// <param name="pageNumber">Index page to use for estimating the rotation</param>
+        /// <returns>The estimated text rotation</returns>
+        public double GetPdfPageTextRotation(byte[] pdf, int pageNumber)
+        {
+            using (var stream = new MemoryStream(pdf))
+            {
+                using (var pdfInstance = GdPictureHelper.GetPDFInstance())
+                {
+                    pdfInstance.LoadFromStream(stream);
+                    pdfInstance.SelectPage(pageNumber);
+                    return pdfInstance.GuessPageTextRotation();
+                }
+            }
+        }
     }
 }

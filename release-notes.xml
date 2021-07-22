@@ -34,4 +34,7 @@
   <ChangeSet>
     <Change type="enhancement">Added a new Method to the PDF-service which can add a text annotation.</Change>
   </ChangeSet>
+    <ChangeSet>
+    <Change type="enhancement">Added two new functions to get a pdfs text rotation and to rotate a pdf page.</Change>
+  </ChangeSet>
 </ReleaseNotes>
