@@ -107,7 +107,7 @@ namespace Simplic.DocumentProcessing
                 {
                     pdfInstance.LoadFromStream(stream);
                     pdfInstance.SelectPage(pageNumber);
-                    pdfInstance.RotatePageEx((float)degree);
+                    pdfInstance.RotatePageEx((float)-degree);
 
                     using (var targetStream = new MemoryStream())
                     {
