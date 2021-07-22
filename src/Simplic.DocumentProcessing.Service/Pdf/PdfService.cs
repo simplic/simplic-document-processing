@@ -1,6 +1,5 @@
 ﻿using GdPicture14;
 using Simplic.DocumentProcessing.Service;
-using System.Drawing;
 using System.IO;
 
 namespace Simplic.DocumentProcessing
