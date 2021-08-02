@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Simplic.DocumentProcessing.Service
 {
     /// <summary>
-    /// ADR service
+    /// ADR service 
     /// </summary>
     public class ADRService : IADRService
     {
