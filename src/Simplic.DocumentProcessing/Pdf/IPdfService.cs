@@ -28,5 +28,22 @@
         /// <param name="annotation">The annotation which will be added</param>
         /// <returns>The modified Pdf-blob</returns>
         byte[] AddTextAnnotation(byte[] pdf, int pageNumber, PdfAnnotation annotation);
+
+        /// <summary>
+        /// Rotates a Pdf
+        /// </summary>
+        /// <param name="pdf">The pdf</param>
+        /// <param name="pageNumber">Index of the page to rotate</param>
+        /// <param name="degree">Clockwise rotation</param>
+        /// <returns>The rotated Pdf</returns>
+        byte[] RotatePdf(byte[] pdf, int pageNumber, double degree);
+
+        /// <summary>
+        /// Estimates a pages text rotation
+        /// </summary>
+        /// <param name="pdf">The pdf</param>
+        /// <param name="pageNumber">Index page to use for estimating the rotation</param>
+        /// <returns>The estimated text rotation</returns>
+        double GetPdfPageTextRotation(byte[] pdf, int pageNumber);
     }
 }
