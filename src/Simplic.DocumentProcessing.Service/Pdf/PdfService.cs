@@ -135,7 +135,10 @@ namespace Simplic.DocumentProcessing
                 {
                     pdfInstance.LoadFromStream(stream);
                     pdfInstance.SelectPage(pageNumber);
-                    return pdfInstance.GuessPageTextRotation();
+
+                    int rotation = pdfInstance.GuessPageTextRotation();
+                    pdfInstance?.CloseDocument();
+                    return rotation;
                 }
             }
         }
