@@ -34,7 +34,7 @@
   <ChangeSet guid="284554ef-a299-4534-b1c6-83e9c283be76">
     <Change type="enhancement">Added a new method to the PDF-service which can add a text annotation.</Change>
   </ChangeSet>
-  <ChangeSet>
+  <ChangeSet guid="efdf38a2-70c5-43aa-8959-90905e5336b5">
     <Change type="bug">Fixes a bug that only reads the QR-Code of the first page.</Change>
   </ChangeSet>
 </ReleaseNotes>
