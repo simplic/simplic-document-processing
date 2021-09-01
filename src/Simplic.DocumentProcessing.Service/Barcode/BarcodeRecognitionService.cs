@@ -34,7 +34,7 @@ namespace Simplic.DocumentProcessing.Service
         {
             var result = new List<BarcodeRecognitionResult>();
 
-            var barcodeTypes = Barcode1DReaderType.Barcode1DReaderCode128 | Barcode1DReaderType.Barcode1DReaderEAN13 | Barcode1DReaderType.Barcode1DReaderEAN8;
+            var barcodeTypes = Barcode1DReaderType.Barcode1DReaderCode128 | Barcode1DReaderType.Barcode1DReaderEAN13 | Barcode1DReaderType.Barcode1DReaderCode39;
 
             if (options.BarcodeTypes != null && options.BarcodeTypes.Any())
             {
@@ -65,7 +65,13 @@ namespace Simplic.DocumentProcessing.Service
                             {
                                 gdPicturePdf.SelectPage(pageNumber);
 
-                                var imageID = gdPicturePdf.RenderPageToGdPictureImageEx(300, true);
+                                var imageID = gdPicturePdf.RenderPageToGdPictureImageEx(options.PdfToTiffDPI, true);
+
+                                if (options.ConvertToBlackAndWhite)
+                                {
+                                    gdPictureImage.FxBlackNWhite(imageID, BitonalReduction.Stucki);
+                                    gdPictureImage.ConvertTo1BppFast(imageID);
+                                }
 
                                 var status = gdPictureImage.Barcode1DReaderDoScan(imageID, Barcode1DReaderScanMode.BestQuality, barcodeTypes, false, 1);
                                 if (status == GdPictureStatus.OK)
@@ -102,6 +108,12 @@ namespace Simplic.DocumentProcessing.Service
                         int imagetmp = imageID;
                         imageID = gdPictureImage.TiffCreateMultiPageFromGdPictureImage(imagetmp);
                         gdPictureImage.ReleaseGdPictureImage(imagetmp);
+                    }
+
+                    if (options.ConvertToBlackAndWhite)
+                    {
+                        gdPictureImage.FxBlackNWhite(imageID, BitonalReduction.Stucki);
+                        gdPictureImage.ConvertTo1BppFast(imageID);
                     }
 
                     int pageCount = gdPictureImage.TiffGetPageCount(imageID);
