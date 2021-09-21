@@ -8,6 +8,14 @@ namespace Simplic.DocumentProcessing
     public interface IPdfSplitService
     {
         /// <summary>
+        /// Generate page ranges from a given list of page numbers
+        /// </summary>
+        /// <param name="pdf">Pdf as blob</param>
+        /// <param name="pages">List of page numbers to create ranges for</param>
+        /// <returns>List of page ranges</returns>
+        IList<PageNumberRange> GetPageRanges(byte[] pdf, IList<BarcodeRecognitionResult> pages);
+
+        /// <summary>
         /// Split pdf by page range
         /// </summary>
         /// <param name="pdf">Pdf to split</param>
