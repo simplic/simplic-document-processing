@@ -66,10 +66,10 @@ namespace Simplic.DocumentProcessing.Service
                                         {
                                             if (i == 1)
                                             {
-                                                targetPdf.ClonePage(templatePdf, i);
+                                                targetPdf.ClonePage(templatePdf, 1);
                                                 targetPdf.SelectPage(i);
 
-                                                targetPdf.DrawPage(sourcePdf, 1, 0, 0, templatePdf.GetPageWidth(), templatePdf.GetPageHeight());
+                                                targetPdf.DrawPage(sourcePdf, i, 0, 0, templatePdf.GetPageWidth(), templatePdf.GetPageHeight());
 
                                                 targetPdf.SelectPage(i);
                                             }
@@ -81,10 +81,10 @@ namespace Simplic.DocumentProcessing.Service
                                         }
                                         else if (mode == PdfLayerMode.AllPagesLayerFirst)
                                         {
-                                            targetPdf.ClonePage(templatePdf, i);
+                                            targetPdf.ClonePage(templatePdf, 1);
                                             targetPdf.SelectPage(i);
 
-                                            targetPdf.DrawPage(sourcePdf, 1, 0, 0, templatePdf.GetPageWidth(), templatePdf.GetPageHeight());
+                                            targetPdf.DrawPage(sourcePdf, i, 0, 0, templatePdf.GetPageWidth(), templatePdf.GetPageHeight());
                                         }
                                     }
                                 }
