@@ -10,6 +10,50 @@ namespace Simplic.DocumentProcessing
     /// </summary>
     public class PdfSplitService : IPdfSplitService
     {
+        private readonly IPdfService pdfService;
+
+        public PdfSplitService(IPdfService pdfService)
+        {
+            this.pdfService = pdfService;
+        }
+
+        /// <summary>
+        /// Generate page ranges from a given list of page numbers
+        /// </summary>
+        /// <param name="pdf">Pdf as blob</param>
+        /// <param name="pageNumbers">List of page numbers to create ranges for</param>
+        /// <returns>List of page ranges</returns>
+        public IList<PageNumberRange> GetPageRanges(byte[] pdf, IList<BarcodeRecognitionResult> pages)
+        {
+            var ranges = new List<PageNumberRange>();
+            var pageCount = pdfService.GetPageCount(pdf);
+
+            foreach (var page in pages.OrderBy(x => x.Page))
+            {
+                var number = page.Page;
+
+                var nextPageCount = pages.Where(x => x.Page > number).OrderBy(x => x.Page).Select(x => x.Page).FirstOrDefault();
+                if (nextPageCount == 0)
+                    ranges.Add(new PageNumberRange
+                    {
+                        StartPageNumber = number,
+                        PageCount = pageCount - (number - 1),
+                        Barcode = page.Barcode,
+                        BarcodeType = page.BarcodeType
+                    });
+                else
+                    ranges.Add(new PageNumberRange
+                    {
+                        StartPageNumber = number,
+                        PageCount = nextPageCount - number,
+                        Barcode = page.Barcode,
+                        BarcodeType = page.BarcodeType
+                    });
+            }
+
+            return ranges;
+        }
+
         /// <summary>
         /// Split pdf by page range
         /// </summary>

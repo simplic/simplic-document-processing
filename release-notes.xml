@@ -36,5 +36,10 @@
   </ChangeSet>
   <ChangeSet>
     <Change type="enhancement">Added two new functions to get a pdfs text rotation and to rotate a pdf page.</Change>
+  <ChangeSet guid="efdf38a2-70c5-43aa-8959-90905e5336b5">
+    <Change type="bug">Fixes a bug that only reads the QR-Code of the first page.</Change>
+  </ChangeSet>
+  <ChangeSet guid="bc389051-e51b-43a4-bb43-2445ab645337">
+    <Change type="feature">Adds a new method to the pdf-split-service to create page-ranges out of page-split-results.</Change>
   </ChangeSet>
 </ReleaseNotes>

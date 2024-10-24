@@ -59,6 +59,7 @@ namespace Simplic.DocumentProcessing.Service
 
                     for (int pageNumber = 1; pageNumber <= pageCount; pageNumber++)
                     {
+                        gdPictureImage.SelectPage(imageID, pageNumber);
                         if (gdPictureImage.BarcodeQRReaderDoScan(imageID, BarcodeQRReaderScanMode.BestQuality) == GdPictureStatus.OK)
                         {
                             int barcodeCount = gdPictureImage.BarcodeQRReaderGetBarcodeCount();
